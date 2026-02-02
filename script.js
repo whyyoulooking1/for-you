@@ -20,7 +20,6 @@ function setupLoveSlider() {
         slider.style.setProperty('--p', val + '%');
         statusText.textContent = `This much! (${val}%)`;
 
-        // Update tiers based on value
         if (val <= 33) {
             tierText.textContent = "YAYYYY!";
         } else if (val <= 66) {
@@ -29,7 +28,6 @@ function setupLoveSlider() {
             tierText.textContent = "SRSLLLLLLYYYYYYYYY!??!?!?!?!??";
         }
 
-        // Clear the "Not AcceptABLE" warning if she moves it back up
         if (val >= 50) {
             const warning = document.getElementById('loveWarning');
             if (warning) warning.textContent = "";
@@ -76,11 +74,10 @@ function checkPassword() {
 }
 
 function showNextQuestion(id) {
-    // If she is moving away from the Love Meter page, check the value
+    // 50% Love Meter Gatekeeper
     if (id === 'Password') {
         const sliderValue = parseInt(document.getElementById('loveMeter').value);
         if (sliderValue < 50) {
-            // Create or update a warning message
             let warning = document.getElementById('loveWarning');
             if (!warning) {
                 warning = document.createElement('p');
@@ -91,29 +88,35 @@ function showNextQuestion(id) {
                 document.getElementById('question2').insertBefore(warning, document.getElementById('afterSliderBtn'));
             }
             warning.textContent = "SORRY NOT ACCEPTABLE! 😤";
-            return; // STOP the navigation
+            return; 
         }
     }
 
+    // Hide everything first to prevent the "bad overlap" you saw
     const allSections = document.querySelectorAll('.question-section');
     allSections.forEach(q => {
         q.classList.add('hidden');
         q.style.display = 'none'; 
     });
 
+    // Show the specific target ID
     const targetId = `question${id}`;
     const nextSection = document.getElementById(targetId);
 
     if (nextSection) {
         nextSection.classList.remove('hidden');
         nextSection.style.display = 'block'; 
+        // Reset scroll to top of card
+        window.scrollTo(0, 0);
     }
 }
 
 function nextSlide() {
     const slides = document.querySelectorAll('.slide');
-    slides[currentSlideIndex].classList.remove('active');
-    currentSlideIndex++;
+    if (currentSlideIndex < slides.length) {
+        slides[currentSlideIndex].classList.remove('active');
+        currentSlideIndex++;
+    }
 
     if (currentSlideIndex < slides.length) {
         slides[currentSlideIndex].classList.add('active');
