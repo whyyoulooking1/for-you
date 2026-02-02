@@ -12,14 +12,6 @@
     <audio id="romanticMusic" loop>
         <source src="music.mp3" type="audio/mpeg">
     </audio>
-    <div class="slide active">
-        <div class="reason-card">
-            <span class="reason-emoji">⏳</span>
-            <h3>A Quick Confession...</h3>
-            <p>I apologise for being a bit late.
-            </p>
-        </div>
-    </div>
 
     <div class="background-decor">
         <div class="floating">🌸</div><div class="floating">💖</div>
@@ -31,7 +23,16 @@
     <div class="container">
         <div class="question-section" id="question1">
             <h1 class="valentine-title">Hi Roop!</h1>
-            <button class="cute-btn" onclick="showNextQuestion('Intro')">Let's Begin ➜</button>
+            <button class="cute-btn" onclick="showNextQuestion('Confession')">Let's Begin ➜</button>
+        </div>
+
+        <div class="question-section hidden" id="questionConfession">
+            <div class="reason-card">
+                <span class="reason-emoji">⏳</span>
+                <h3>A Quick Confession...</h3>
+                <p class="readable-text">I apologise for being a bit late.</p>
+            </div>
+            <button class="cute-btn" onclick="showNextQuestion('Intro')">Continue ➜</button>
         </div>
 
         <div class="question-section hidden" id="questionIntro">
@@ -56,7 +57,6 @@
                 <div class="slide fade">
                     <h2 class="valentine-title">Reason #3</h2>
                     <img src="https://i.makeagif.com/media/1-19-2016/43VVnk.gif" alt="Reason 3" class="slide-img">
-                    <h3>Reason #3</h3>
                     <p class="readable-text">This is me every time you're not around. I miss you so much😞</p>
                 </div>
                 <div class="slide fade">
@@ -149,5 +149,4 @@
     <script src="config.js"></script>
     <script src="script.js"></script>
 </body>
-
 </html>
